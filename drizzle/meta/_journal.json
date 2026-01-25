@@ -8,6 +8,13 @@
       "when": 1769197978526,
       "tag": "0000_zippy_gateway",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1769366776786,
+      "tag": "0001_slippery_gravity",
+      "breakpoints": true
     }
   ]
 }
