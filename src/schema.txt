@@ -1,0 +1,14 @@
+- User
+  username
+  full name
+  bio?
+  appointments[]
+
+- Appointments
+  from (user)
+  to (user)
+  start
+  end
+  title
+  description?
+

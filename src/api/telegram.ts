@@ -1,5 +1,5 @@
-import type { State } from "../state.js";
-import type { GetUpdateResponse } from "../types.js";
+import type { State } from "../lib/state.js";
+import type { GetUpdateResponse } from "../lib/types.js";
 
 export function createTelegramApi(baseUrl: string) {
   return {
@@ -10,18 +10,24 @@ export function createTelegramApi(baseUrl: string) {
 
       const res = await fetch(url);
       const data = await res.json() as GetUpdateResponse;
-      console.log(baseUrl)
 
-      for (const upd of data) {
+      for (const upd of data.result) {
         state.offset = upd.update_id + 1;
-        console.log(upd);
       }
+
+      return data;
     },
     getCommands: async () => {
       const res = await fetch(`${baseUrl}/getMyCommands`);
       const data = await res.json();
-      console.log(data);
     },
-    sendMessage: () => { }
+    sendMessage: async (chatId: number, text: string) => {
+      const url = new URL(`${baseUrl}/sendMessage`);
+      url.searchParams.set("chat_id", chatId.toString());
+      url.searchParams.set("text", text);
+
+      const res = await fetch(url);
+      const data = await res.json();
+    }
   }
 }

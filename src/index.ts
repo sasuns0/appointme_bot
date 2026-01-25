@@ -1,13 +1,13 @@
-import { server } from "./server.js";
+import { server } from "./lib/server.js";
 import { createTelegramApi } from "./api/telegram.js";
-import type { State } from "./state.js";
+import type { State } from "./lib/state.js";
+import { handleUpdate } from "./lib/handleUpdates.js";
+import { sleep } from "./utils/sleep.js";
 
 process.loadEnvFile();
 
 const BASE_URL =
   `https://api.telegram.org/${process.env.TOKEN}`;
-
-const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
 async function main() {
   server.listen(process.env.PORT);
@@ -19,7 +19,13 @@ async function main() {
   //long polling
   while (true) {
     try {
-      await telegramApi.getUpdates(state);
+      const updates = await telegramApi.getUpdates(state);
+      if (updates.ok) {
+        for (let upd of updates.result) {
+          const handleRes = handleUpdate(upd);
+          telegramApi.sendMessage(upd.message.chat.id, handleRes);
+        }
+      }
     } catch (e) {
       console.error("getUpdates error:", e);
       await sleep(1000);

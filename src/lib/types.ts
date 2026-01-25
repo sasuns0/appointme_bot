@@ -18,13 +18,16 @@ export type Message = {
   message_id: number;
   from: User;
   chat: Chat;
+  text: string;
 }
 
 export type Update = {
   update_id: number;
   message: Message;
   date: number;
-  text: string;
 }
 
-export type GetUpdateResponse = [Update]
+export type GetUpdateResponse = {
+  ok: boolean;
+  result: [Update];
+}
