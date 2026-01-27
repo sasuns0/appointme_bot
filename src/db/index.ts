@@ -1,7 +1,9 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 
-import * as usersSchema from './schemas/users';
-import * as appointmentsSchema from './schemas/appointments';
+import * as usersSchema from './schemas/users.js';
+import * as appointmentsSchema from './schemas/appointments.js';
+
+process.loadEnvFile();
 
 const connectionString = process.env.DATABASE_URL!;
 
@@ -9,7 +11,7 @@ export const db = drizzle({
   connection: connectionString,
   casing: 'snake_case',
   schema: {
-    usersSchema,
-    appointmentsSchema
+    ...usersSchema,
+    ...appointmentsSchema
   },
 });

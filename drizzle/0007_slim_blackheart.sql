@@ -1,0 +1,1 @@
+ALTER TYPE "public"."step" ADD VALUE 'complete';

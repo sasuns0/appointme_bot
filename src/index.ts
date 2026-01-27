@@ -22,8 +22,7 @@ async function main() {
       const updates = await telegramApi.getUpdates(state);
       if (updates.ok) {
         for (let upd of updates.result) {
-          const handleRes = handleUpdate(upd);
-          telegramApi.sendMessage(upd.message.chat.id, handleRes);
+          handleUpdate(upd, telegramApi);
         }
       }
     } catch (e) {

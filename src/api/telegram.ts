@@ -1,5 +1,7 @@
 import type { State } from "../lib/state.js";
-import type { GetUpdateResponse } from "../lib/types.js";
+import type { GetUpdateResponse } from "../lib/types/base.js";
+
+export type TelegramApi = ReturnType<typeof createTelegramApi>;
 
 export function createTelegramApi(baseUrl: string) {
   return {
