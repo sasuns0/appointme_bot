@@ -71,6 +71,20 @@
       "when": 1769507315021,
       "tag": "0009_marvelous_ma_gnuci",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1769955298258,
+      "tag": "0010_colossal_hydra",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1769955825316,
+      "tag": "0011_cool_katie_power",
+      "breakpoints": true
     }
   ]
 }

@@ -2,6 +2,7 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 
 import * as usersSchema from './schemas/users.js';
 import * as appointmentsSchema from './schemas/appointments.js';
+import * as sessionsSchema from './schemas/sessions.js';
 
 process.loadEnvFile();
 
@@ -12,6 +13,7 @@ export const db = drizzle({
   casing: 'snake_case',
   schema: {
     ...usersSchema,
-    ...appointmentsSchema
+    ...appointmentsSchema,
+    ...sessionsSchema
   },
 });

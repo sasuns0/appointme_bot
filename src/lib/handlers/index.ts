@@ -3,6 +3,10 @@ import type { TelegramApi } from "../../api/telegram.js";
 import { createUser, getUser } from "../services/user.js";
 import type { Update } from "../types/base.js";
 import { registerUserHandler } from "./registerUserHandler.js";
+import { newAppointmentHandler } from "./newAppointmentHandler.js";
+import { db } from "../../db/index.js";
+import { eq } from "drizzle-orm";
+import { sessionsTable } from "../../db/schemas/sessions.js";
 
 export async function handleUpdate(update: Update, telegramApi: TelegramApi) {
   const userId = update.message.from.id;
@@ -22,7 +26,11 @@ export async function handleUpdate(update: Update, telegramApi: TelegramApi) {
     return;
   }
 
-  if (user.step !== "complete") {
-    await registerUserHandler(update, telegramApi, user)
+  if (!user.isComplete) {
+    await registerUserHandler({ update, telegramApi, user })
+  }
+
+  if (messageText === "/new") {
+    await newAppointmentHandler({ update, telegramApi })
   }
 }

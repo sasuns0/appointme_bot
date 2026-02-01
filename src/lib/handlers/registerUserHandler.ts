@@ -2,9 +2,20 @@ import type { User } from "../types/user.js";
 import type { TelegramApi } from "../../api/telegram.js";
 import { updateStep, updateUser } from "../services/user.js";
 import type { Update } from "../types/base.js";
+import { db } from "../../db/index.js";
+import { eq } from "drizzle-orm";
+import { sessionsTable } from "../../db/schemas/sessions.js";
 
-export async function registerUserHandler(update: Update, telegramApi: TelegramApi, user: User) {
-  switch (user.step) {
+type handlerParams = {
+  update: Update,
+  telegramApi: TelegramApi,
+  user: User
+}
+
+export async function registerUserHandler({ update, user, telegramApi }: handlerParams) {
+  const userSession = await db.query.sessionsTable.findFirst({ where: eq(sessionsTable.userId, user.telegramUserId) });
+
+  switch (userSession?.step) {
     case "idle":
       await updateStep({ step: "username", telegramUserId: user.telegramUserId });
       await telegramApi.sendMessage(update.message.chat.id, "Please write your username")

@@ -1,9 +1,4 @@
-export type User = {
-  id: number;
-  is_bot: boolean;
-  first_name: string;
-  username: string;
-}
+import type { User } from "./user.js";
 
 export type ChatType = 'private' | 'public'
 

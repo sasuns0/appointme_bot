@@ -1,5 +1,6 @@
 import type { State } from "../lib/state.js";
 import type { GetUpdateResponse } from "../lib/types/base.js";
+import { getNextDays } from "../utils/index.js";
 
 export type TelegramApi = ReturnType<typeof createTelegramApi>;
 
@@ -30,6 +31,26 @@ export function createTelegramApi(baseUrl: string) {
 
       const res = await fetch(url);
       const data = await res.json();
+    },
+    createButton: async (
+      chatId: number,
+      text: string,
+      replyMarkup: { inline_keyboard: { text: string, callback_data: string }[][] }
+    ) => {
+
+      const jsonBody = {
+        chat_id: chatId,
+        text,
+        reply_markup: replyMarkup
+      };
+
+      await fetch(`${baseUrl}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(jsonBody)
+      });
     }
   }
 }

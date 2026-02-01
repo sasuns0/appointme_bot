@@ -9,7 +9,7 @@ export const appointmentsTable = pgTable("appointments", {
   fromId: integer("from_id"),
   toId: integer("to_id"),
   start: timestamp({ withTimezone: true }),
-  end: timestamp({ withTimezone: true })
+  end: timestamp({ withTimezone: true }),
 })
 
 export const appointmentsRelations = relations(appointmentsTable, ({ one }) => ({

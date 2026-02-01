@@ -1,8 +1,6 @@
-import { integer, pgTable, varchar, bigint, timestamp, jsonb, pgEnum } from "drizzle-orm/pg-core";
+import { integer, pgTable, varchar, bigint, timestamp, boolean } from "drizzle-orm/pg-core";
 import { appointmentsTable } from "./appointments.js";
 import { relations } from "drizzle-orm";
-
-export const stepEnum = pgEnum('step', ['idle', 'username', 'fullname', 'bio', 'complete']);
 
 export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -11,9 +9,7 @@ export const usersTable = pgTable("users", {
   username: varchar({ length: 255 }),
   name: varchar({ length: 255 }),
   bio: varchar({ length: 255 }),
-
-  step: stepEnum().default("idle"),
-  state: jsonb("state").notNull().default({}),
+  isComplete: boolean().default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });

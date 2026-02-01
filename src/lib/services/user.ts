@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "../../db/index.js";
 import { usersTable } from "../../db/schemas/users.js";
-import type { Step } from "../types/user.js";
+import { sessionsTable } from "../../db/schemas/sessions.js";
 
 type getUserParams = { userId: number };
 
@@ -20,12 +20,12 @@ export async function createUser({ userId, chatId }: createUserParams) {
   return user;
 }
 
-type updateStepParams = { step: Step, telegramUserId: number };
+type updateStepParams = { step: string, telegramUserId: number };
 
 export async function updateStep({ step, telegramUserId }: updateStepParams) {
-  const res = await db.update(usersTable)
+  const res = await db.update(sessionsTable)
     .set({ step })
-    .where(eq(usersTable.telegramUserId, telegramUserId));
+    .where(eq(sessionsTable.userId, telegramUserId));
 
   if (res.rowCount === 0) {
     throw new Error("Something went wrong");
