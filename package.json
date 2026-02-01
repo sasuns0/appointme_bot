@@ -2,13 +2,13 @@
   "name": "appointme_bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "type": "module",
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
     "build": "tsc --outDir ./dist",
     "start": "tsx ./src/index.ts",
-    "lint": "tsc --noEmit",
+    "lint": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",

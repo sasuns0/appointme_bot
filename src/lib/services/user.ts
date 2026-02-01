@@ -7,7 +7,7 @@ type getUserParams = { userId: number };
 
 export async function getUser({ userId }: getUserParams) {
   const result = await db.query.usersTable.findFirst({
-    where: (users, { eq }) => eq(users.telegramUserId, userId),
+    where: eq(usersTable.telegramUserId, userId),
   });
 
   return result;
