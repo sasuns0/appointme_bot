@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
-import { db } from "../../db/index.js";
-import { usersTable } from "../../db/schemas/users.js";
-import { sessionsTable } from "../../db/schemas/sessions.js";
+import { db } from "../../db/index";
+import { usersTable } from "../../db/schemas/users";
+import { sessionsTable } from "../../db/schemas/sessions";
 
 type getUserParams = { userId: number };
 

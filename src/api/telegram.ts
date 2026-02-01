@@ -1,6 +1,5 @@
-import type { State } from "../lib/state.js";
-import type { GetUpdateResponse } from "../lib/types/base.js";
-import { getNextDays } from "../utils/index.js";
+import type { State } from "../lib/state";
+import type { GetUpdateResponse } from "../lib/types/base";
 
 export type TelegramApi = ReturnType<typeof createTelegramApi>;
 

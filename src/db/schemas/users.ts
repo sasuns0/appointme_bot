@@ -1,5 +1,5 @@
 import { integer, pgTable, varchar, bigint, timestamp, boolean } from "drizzle-orm/pg-core";
-import { appointmentsTable } from "./appointments.js";
+import { appointmentsTable } from "./appointments";
 import { relations } from "drizzle-orm";
 
 export const usersTable = pgTable("users", {

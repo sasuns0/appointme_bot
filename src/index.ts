@@ -1,8 +1,8 @@
-import { server } from "./lib/server.js";
-import { createTelegramApi } from "./api/telegram.js";
-import type { State } from "./lib/state.js";
-import { handleUpdate } from "./lib/handlers/index.js";
-import { sleep } from "./utils/sleep.js";
+import { server } from "./lib/server";
+import { createTelegramApi } from "./api/telegram";
+import type { State } from "./lib/state";
+import { handleUpdate } from "./lib/handlers/index";
+import { sleep } from "./utils/sleep";
 
 process.loadEnvFile();
 

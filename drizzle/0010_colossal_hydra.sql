@@ -8,5 +8,5 @@ CREATE TABLE "bot_sessions" (
 	CONSTRAINT "bot_sessions_telegram_user_id_unique" UNIQUE("telegram_user_id")
 );
 --> statement-breakpoint
-ALTER TABLE IF EXISTS "users" DROP COLUMN "step";--> statement-breakpoint
-ALTER TABLE IF EXISTS "users" DROP COLUMN "state";
+ALTER TABLE "users" DROP COLUMN "step";--> statement-breakpoint
+ALTER TABLE "users" DROP COLUMN "state";

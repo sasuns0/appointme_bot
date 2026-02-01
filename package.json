@@ -5,12 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": "tsx watch ./src/index.ts",
     "build": "tsc --outDir ./dist",
-    "start": "node dist/index.js",
+    "start": "tsx ./src/index.ts",
     "lint": "tsc --noEmit",
-    "drizzle:generate": "tsx ./node_modules/drizzle-kit/bin.cjs generate",
-    "drizzle:migrate": "tsx ./node_modules/drizzle-kit/bin.cjs migrate"
   },
   "keywords": [],
   "author": "",

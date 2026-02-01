@@ -1,12 +1,9 @@
-import type { User } from "../types/user.js";
-import type { TelegramApi } from "../../api/telegram.js";
-import { createUser, getUser } from "../services/user.js";
-import type { Update } from "../types/base.js";
-import { registerUserHandler } from "./registerUserHandler.js";
-import { newAppointmentHandler } from "./newAppointmentHandler.js";
-import { db } from "../../db/index.js";
-import { eq } from "drizzle-orm";
-import { sessionsTable } from "../../db/schemas/sessions.js";
+import type { User } from "../types/user";
+import type { TelegramApi } from "../../api/telegram";
+import { createUser, getUser } from "../services/user";
+import type { Update } from "../types/base";
+import { registerUserHandler } from "./registerUserHandler";
+import { newAppointmentHandler } from "./newAppointmentHandler";
 
 export async function handleUpdate(update: Update, telegramApi: TelegramApi) {
   const userId = update.message.from.id;

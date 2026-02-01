@@ -1,6 +1,6 @@
-import type { TelegramApi } from "../../api/telegram.js"
-import { getNextDays } from "../../utils/index.js";
-import type { Update } from "../types/base.js";
+import type { TelegramApi } from "../../api/telegram"
+import { getNextDays } from "../../utils/index";
+import type { Update } from "../types/base";
 
 type handlerParams = {
   update: Update,
