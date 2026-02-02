@@ -9,7 +9,7 @@ export const usersTable = pgTable("users", {
   username: varchar({ length: 255 }),
   name: varchar({ length: 255 }),
   bio: varchar({ length: 255 }),
-  isComplete: boolean().default(false),
+  isComplete: boolean('is_complete').default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
